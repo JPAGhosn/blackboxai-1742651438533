@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CS:GO Web Clone</title>
+    <link rel="stylesheet" href="styles.css">
+    <!-- Import Three.js from CDN -->
+    <script async src="https://unpkg.com/es-module-shims/dist/es-module-shims.js"></script>
+    <script type="importmap">
+        {
+            "imports": {
+                "three": "https://unpkg.com/three@0.159.0/build/three.module.js",
+                "three/addons/": "https://unpkg.com/three@0.159.0/examples/jsm/",
+                "three/examples/": "https://unpkg.com/three@0.159.0/examples/"
+            }
+        }
+    </script>
+</head>
+<body>
+    <!-- Game Canvas Container -->
+    <div id="game-container">
+        <canvas id="game-canvas"></canvas>
+    </div>
+
+    <!-- UI Overlays -->
+    <div id="ui-container">
+        <!-- Main Menu -->
+        <div id="main-menu" class="overlay">
+            <div class="menu-content">
+                <h1>CS:GO Web Clone</h1>
+                <button id="start-game" class="menu-button">Start Game</button>
+                <button id="options" class="menu-button">Options</button>
+                <button id="exit" class="menu-button">Exit</button>
+            </div>
+        </div>
+
+        <!-- Team Selection Screen -->
+        <div id="team-selection" class="overlay hidden">
+            <div class="menu-content">
+                <h2>Select Your Team</h2>
+                <div class="team-options">
+                    <div class="team-choice" id="team-blue">
+                        <img src="https://via.placeholder.com/150/0000FF/FFFFFF?text=BLUE" alt="Blue Team">
+                        <h3>Blue Team</h3>
+                        <p>Counter-Terrorists</p>
+                    </div>
+                    <div class="team-choice" id="team-red">
+                        <img src="https://via.placeholder.com/150/FF0000/FFFFFF?text=RED" alt="Red Team">
+                        <h3>Red Team</h3>
+                        <p>Terrorists</p>
+                    </div>
+                </div>
+                <div class="weapon-selection hidden">
+                    <h3>Select Your Weapon</h3>
+                    <div class="weapon-options">
+                        <div class="weapon-choice" id="weapon-rifle">
+                            <img src="https://via.placeholder.com/100/808080/FFFFFF?text=RIFLE" alt="Rifle">
+                            <p>Assault Rifle</p>
+                            <ul>
+                                <li>Balanced damage</li>
+                                <li>Medium range</li>
+                                <li>Fast fire rate</li>
+                            </ul>
+                        </div>
+                        <div class="weapon-choice" id="weapon-sniper">
+                            <img src="https://via.placeholder.com/100/808080/FFFFFF?text=SNIPER" alt="Sniper">
+                            <p>Sniper Rifle</p>
+                            <ul>
+                                <li>High damage</li>
+                                <li>Long range</li>
+                                <li>Slow fire rate</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                <button id="back-to-menu" class="menu-button">Back</button>
+            </div>
+        </div>
+
+        <!-- HUD (Initially Hidden) -->
+        <div id="hud" class="hidden">
+            <div class="health-bar">
+                <div class="health-label">HP</div>
+                <div class="health-value">100</div>
+            </div>
+            <div class="ammo-counter">
+                <div class="ammo-current">30</div>
+                <div class="ammo-total">90</div>
+            </div>
+            <div class="score">Score: 0</div>
+            <div class="crosshair"></div>
+            <div class="scope-overlay">
+                <div class="scope-circle"></div>
+            </div>
+            <div class="minimap">
+                <canvas id="minimap-canvas"></canvas>
+            </div>
+        </div>
+
+        <!-- Respawn Countdown -->
+        <div id="respawn-countdown" class="overlay hidden">
+            <div class="menu-content">
+                <h2>Respawning in</h2>
+                <div class="countdown">10</div>
+            </div>
+        </div>
+
+        <!-- Pause Menu (Initially Hidden) -->
+        <div id="pause-menu" class="overlay hidden">
+            <div class="menu-content">
+                <h2>Paused</h2>
+                <button id="resume" class="menu-button">Resume</button>
+                <button id="quit-to-menu" class="menu-button">Quit to Menu</button>
+            </div>
+        </div>
+
+        <!-- Game Over Screen (Initially Hidden) -->
+        <div id="game-over" class="overlay hidden">
+            <div class="menu-content">
+                <h2>Game Over</h2>
+                <div class="final-score">Score: 0</div>
+                <button id="restart" class="menu-button">Play Again</button>
+                <button id="main-menu-return" class="menu-button">Main Menu</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Error Message (Initially Hidden) -->
+    <div id="error-message" class="overlay hidden">
+        <div class="menu-content">
+            <h2>Error</h2>
+            <p>WebGL is required to run this game. Please enable WebGL or use a supported browser.</p>
+        </div>
+    </div>
+
+    <!-- Game Engine Scripts -->
+    <script type="module" src="main.js"></script>
+</body>
+</html>
